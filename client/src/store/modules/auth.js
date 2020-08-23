@@ -3,14 +3,18 @@ import axios from "axios";
 import setAuthToken from "../../utils/setAuthToken";
 
 const state = {
-    token: localStorage.getItem("token"),
-    isAuthenticated: null,
-    loading: true,
-    user: null,
+    auth: {
+        token: localStorage.getItem("token"),
+        isAuthenticated: null,
+        loading: true,
+        user: null,
+    },
 };
 
 const getters = {
-    currentUser: (state) => state.token,
+    currentUser: (state) => state.auth.user,
+    authenticationStatus: (state) => state.auth.isAuthenticated,
+    loadingStatus: (state) => state.auth.loading,
 };
 
 const actions = {
@@ -22,8 +26,6 @@ const actions = {
 
         try {
             const res = await axios.get("/api/auth");
-
-            if (!res) commit("LOGOUT_OR_AUTH_FAIL");
 
             commit("USER_LOADED", res.data);
         } catch (error) {
@@ -153,24 +155,33 @@ const actions = {
 
 const mutations = {
     SET_TOKEN: (state) => {
-        state.token = localStorage.getItem("token");
+        state.auth = { ...state.auth, token: localStorage.getItem("token") };
     },
     USER_LOADED: (state, payload) => {
-        state.isAuthenticated = true;
-        state.user = payload;
-        state.loading = false;
+        state.auth = {
+            ...state.auth,
+            isAuthenticated: true,
+            user: payload,
+            loading: false,
+        };
     },
     REGISTER_LOGIN_SUCCESS: (state, payload) => {
         localStorage.setItem("token", payload.token);
-        state.token = payload.token;
-        state.isAuthenticated = true;
-        state.loading = false;
+        state.auth = {
+            ...state.auth,
+            token: payload.token,
+            isAuthenticated: true,
+            loading: false,
+        };
     },
     LOGOUT_OR_AUTH_FAIL: (state) => {
         localStorage.removeItem("token");
-        state.token = null;
-        state.isAuthenticated = false;
-        state.loading = false;
+        state.auth = {
+            ...state.auth,
+            token: null,
+            isAuthenticated: false,
+            loading: false,
+        };
     },
 };
 
