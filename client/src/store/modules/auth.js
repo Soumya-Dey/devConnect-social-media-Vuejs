@@ -149,6 +149,7 @@ const actions = {
         }
     },
     async logout({ commit }) {
+        commit("CLEAR_PROFILE", null, { root: true }); // from profile module, hence {root: true}
         commit("LOGOUT_OR_AUTH_FAIL");
     },
 };
@@ -177,7 +178,7 @@ const mutations = {
     LOGOUT_OR_AUTH_FAIL: (state) => {
         localStorage.removeItem("token");
         state.auth = {
-            ...state.auth,
+            user: null,
             token: null,
             isAuthenticated: false,
             loading: false,
