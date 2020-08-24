@@ -380,5 +380,3 @@ export default {
     actions,
     mutations,
 };
-
-// TODO: Check if the UPDATE_FOLLOWERS mutation is working ??
