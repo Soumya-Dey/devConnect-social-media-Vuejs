@@ -14,7 +14,7 @@ const state = {
 const getters = {
     currentUser: (state) => state.auth.user,
     authenticationStatus: (state) => state.auth.isAuthenticated,
-    loadingStatus: (state) => state.auth.loading,
+    authLoadingStatus: (state) => state.auth.loading,
 };
 
 const actions = {

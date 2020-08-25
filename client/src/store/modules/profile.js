@@ -16,8 +16,8 @@ const getters = {
     currentProfile: (state) => state.profile.profile,
     allProfiles: (state) => state.profile.profiles,
     profileRepos: (state) => state.profile.repos,
-    loadingStatus: (state) => state.profile.loading,
-    error: (state) => state.profile.error,
+    profileLoadingStatus: (state) => state.profile.loading,
+    profileError: (state) => state.profile.error,
 };
 
 const actions = {
