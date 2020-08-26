@@ -5,7 +5,7 @@
       <router-link to="/">Home</router-link>|
       <router-link to="/about">About</router-link>
     </div>-->
-        <router-view />
+        <section class="container"><router-view /></section>
     </div>
 </template>
 
@@ -32,7 +32,7 @@ export default {
 <style>
 /* Global Styles */
 :root {
-    --primary-color: #4fc08d;
+    --primary-color: #41b883;
     --dark-color: #343a40;
     --light-color: #f5f5f5;
     --danger-color: #dc3545;

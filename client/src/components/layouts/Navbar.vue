@@ -21,8 +21,7 @@
                     </router-link>
                 </li>
                 <li>
-                    <!-- <a onClick={props.logout} href="/login"> -->
-                    <a>
+                    <a @click="this.logout" href="/login">
                         <i class="fas fa-sign-out-alt"></i> &nbsp;
                         <span class="hide-sm">Logout</span>
                     </a>
@@ -38,10 +37,11 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
     name: "Navbar",
+    methods: mapActions(["logout"]),
     computed: mapGetters(["authenticationStatus", "authLoadingStatus"]),
 };
 </script>

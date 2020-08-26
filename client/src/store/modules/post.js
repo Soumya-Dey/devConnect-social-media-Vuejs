@@ -20,7 +20,7 @@ const actions = {
     async getAllPosts({ commit }) {
         try {
             // get all posts
-            const res = await axios.get("/api/posts");
+            const res = await axios.get("http://localhost:5000/api/posts");
 
             commit("GET_POSTS", res.data);
             // try this if the other version creates problems
@@ -38,7 +38,9 @@ const actions = {
     async getAllPostsByUser({ commit }, { userId }) {
         try {
             // get all posts
-            const res = await axios.get(`/api/posts/user/${userId}`);
+            const res = await axios.get(
+                `http://localhost:5000/api/posts/user/${userId}`
+            );
 
             commit("GET_POSTS", res.data);
             // try this if the other version creates problems
@@ -56,7 +58,9 @@ const actions = {
     async getPost({ commit }, { postId }) {
         try {
             // get the post by id
-            const res = await axios.get(`/api/posts/${postId}`);
+            const res = await axios.get(
+                `http://localhost:5000/api/posts/${postId}`
+            );
 
             commit("GET_POST", res.data);
             // try this if the other version creates problems
@@ -74,7 +78,9 @@ const actions = {
     async addLike({ commit }, { postId }) {
         try {
             // add the like
-            const res = await axios.put(`/api/posts/like/${postId}`);
+            const res = await axios.put(
+                `http://localhost:5000/api/posts/like/${postId}`
+            );
 
             // send the likes array to reducer
             commit("UPDATE_LIKES", { postId: postId, likes: res.data });
@@ -89,7 +95,9 @@ const actions = {
     async removeLike({ commit }, { postId }) {
         try {
             // remove the like
-            const res = await axios.put(`/api/posts/unlike/${postId}`);
+            const res = await axios.put(
+                `http://localhost:5000/api/posts/unlike/${postId}`
+            );
 
             // send the likes array to reducer
             commit("UPDATE_LIKES", { postId: postId, likes: res.data });
@@ -104,7 +112,9 @@ const actions = {
     async addDislike({ commit }, { postId }) {
         try {
             // add the dislike
-            const res = await axios.put(`/api/posts/dislike/${postId}`);
+            const res = await axios.put(
+                `http://localhost:5000/api/posts/dislike/${postId}`
+            );
 
             // send the dislikes array to reducer
             commit("UPDATE_DISLIKES", { postId: postId, dislikes: res.data });
@@ -119,7 +129,9 @@ const actions = {
     async removeDislike({ commit }, { postId }) {
         try {
             // remove the dislike
-            const res = await axios.put(`/api/posts/undislike/${postId}`);
+            const res = await axios.put(
+                `http://localhost:5000/api/posts/undislike/${postId}`
+            );
 
             // send the dislikes array to reducer
             commit("UPDATE_DISLIKES", { postId: postId, dislikes: res.data });
@@ -134,9 +146,13 @@ const actions = {
     async addPost({ commit, dispatch }, { formData }) {
         try {
             // add the post
-            const res = await axios.post("/api/posts", formData, {
-                headers: { "Content-Type": "application/json" },
-            });
+            const res = await axios.post(
+                "http://localhost:5000/api/posts",
+                formData,
+                {
+                    headers: { "Content-Type": "application/json" },
+                }
+            );
 
             // send the new post to reducer
             commit("ADD_POST", res.data);
@@ -158,7 +174,7 @@ const actions = {
         if (window.confirm("Are you sure you want to remove your post?")) {
             try {
                 // remove the post
-                await axios.delete(`/api/posts/${postId}`);
+                await axios.delete(`http://localhost:5000/api/posts/${postId}`);
 
                 // send the deleted post id to reducer
                 commit("DELETE_POST", { postId });
@@ -181,7 +197,7 @@ const actions = {
         try {
             // add the commet
             const res = await axios.post(
-                `/api/posts/comment/${postId}`,
+                `http://localhost:5000/api/posts/comment/${postId}`,
                 formData,
                 {
                     headers: { "Content-Type": "application/json" },
@@ -209,7 +225,7 @@ const actions = {
             try {
                 // add the commet
                 const res = await axios.delete(
-                    `/api/posts/comment/${postId}/${commentId}`
+                    `http://localhost:5000/api/posts/comment/${postId}/${commentId}`
                 );
 
                 // send the new comment data to reducer

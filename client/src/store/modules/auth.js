@@ -25,7 +25,7 @@ const actions = {
         if (localStorage.token) setAuthToken(localStorage.token);
 
         try {
-            const res = await axios.get("/api/auth");
+            const res = await axios.get("http://localhost:5000/api/auth");
 
             commit("USER_LOADED", res.data);
         } catch (error) {
@@ -37,7 +37,7 @@ const actions = {
             // get the token after register
             // returns the token upon sucessfull authentication
             const res = await axios.post(
-                "/api/users",
+                "http://localhost:5000/api/users",
                 JSON.stringify({ name, email, password }),
                 { headers: { "Content-Type": "application/json" } }
             );
@@ -68,7 +68,7 @@ const actions = {
             // get the token after logging in
             // returns the token upon sucessfull authentication
             const res = await axios.post(
-                "/api/auth",
+                "http://localhost:5000/api/auth",
                 JSON.stringify({ email, password }),
                 { headers: { "Content-Type": "application/json" } }
             );
@@ -97,9 +97,13 @@ const actions = {
     async forgotPassword({ dispatch }, { email }) {
         try {
             // send email
-            await axios.post("/api/auth/forgot", JSON.stringify({ email }), {
-                headers: { "Content-Type": "application/json" },
-            });
+            await axios.post(
+                "http://localhost:5000/api/auth/forgot",
+                JSON.stringify({ email }),
+                {
+                    headers: { "Content-Type": "application/json" },
+                }
+            );
 
             // send the token to the reducer
             dispatch("setAlert", {
@@ -124,7 +128,7 @@ const actions = {
         try {
             // reset password
             await axios.post(
-                `/api/auth/reset/${resetPasswordId}`,
+                `http://localhost:5000/api/auth/reset/${resetPasswordId}`,
                 JSON.stringify({ password }),
                 { headers: { "Content-Type": "application/json" } }
             );

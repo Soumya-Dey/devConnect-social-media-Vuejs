@@ -24,7 +24,7 @@ const actions = {
     async getCurrentProfile({ commit }) {
         try {
             // get the profile
-            const res = await axios.get("/api/profile/me");
+            const res = await axios.get("http://localhost:5000/api/profile/me");
 
             // send the profile data to the reducer
             commit("GET_OR_UPDATE_PROFILE", res.data);
@@ -40,7 +40,7 @@ const actions = {
         commit("CLEAR_PROFILE");
 
         try {
-            const res = await axios.get("/api/profile");
+            const res = await axios.get("http://localhost:5000/api/profile");
 
             // send the profiles data to the reducer
             commit("GET_ALL_PROFILES", res.data);
@@ -54,7 +54,9 @@ const actions = {
     },
     async getProfileById({ commit }, { userId }) {
         try {
-            const res = await axios.get(`/api/profile/user/${userId}`);
+            const res = await axios.get(
+                `http://localhost:5000/api/profile/user/${userId}`
+            );
 
             // send the profile data to the reducer
             commit("GET_OR_UPDATE_PROFILE", res.data);
@@ -69,7 +71,7 @@ const actions = {
     async getGithubRepos({ commit }, { githubUsername }) {
         try {
             const res = await axios.get(
-                `/api/profile/github/${githubUsername}`
+                `http://localhost:5000/api/profile/github/${githubUsername}`
             );
 
             // send the repository data to the reducer
@@ -84,9 +86,13 @@ const actions = {
     async createProfile({ commit, dispatch }, { formData, isEditing = false }) {
         try {
             // create or update profile
-            const res = await axios.post("/api/profile", formData, {
-                headers: { "Content-Type": "application/json" },
-            });
+            const res = await axios.post(
+                "http://localhost:5000/api/profile",
+                formData,
+                {
+                    headers: { "Content-Type": "application/json" },
+                }
+            );
 
             // send the profile data to the reducer
             commit("GET_OR_UPDATE_PROFILE", res.data);
@@ -128,7 +134,7 @@ const actions = {
         try {
             // add follower and following
             const res = await axios.put(
-                `/api/profile/follow/${userToFollowId}`
+                `http://localhost:5000/api/profile/follow/${userToFollowId}`
             );
 
             // send the profile data to the reducer
@@ -148,7 +154,7 @@ const actions = {
         try {
             // remove follower and following
             const res = await axios.delete(
-                `/api/profile/unfollow/${userToUnfollowId}`
+                `http://localhost:5000/api/profile/unfollow/${userToUnfollowId}`
             );
 
             // send the profile data to the reducer
@@ -167,9 +173,13 @@ const actions = {
     async addExperience({ commit, dispatch }, { formData }) {
         try {
             // create or update profile
-            const res = await axios.put("/api/profile/experience", formData, {
-                headers: { "Content-Type": "application/json" },
-            });
+            const res = await axios.put(
+                "http://localhost:5000/api/profile/experience",
+                formData,
+                {
+                    headers: { "Content-Type": "application/json" },
+                }
+            );
 
             // send the profile data to the reducer
             commit("GET_OR_UPDATE_PROFILE", res.data);
@@ -207,9 +217,13 @@ const actions = {
     async addEducation({ commit, dispatch }, { formData }) {
         try {
             // create or update profile
-            const res = await axios.put("/api/profile/education", formData, {
-                headers: { "Content-Type": "application/json" },
-            });
+            const res = await axios.put(
+                "http://localhost:5000/api/profile/education",
+                formData,
+                {
+                    headers: { "Content-Type": "application/json" },
+                }
+            );
 
             // send the profile data to the reducer
             commit("GET_OR_UPDATE_PROFILE", res.data);
@@ -248,7 +262,9 @@ const actions = {
     async deleteExperience({ commit, dispatch }, { expId }) {
         try {
             // delete the experience by id
-            const res = await axios.delete(`/api/profile/experience/${expId}`);
+            const res = await axios.delete(
+                `http://localhost:5000/api/profile/experience/${expId}`
+            );
 
             // send the updated profile data to the reducer
             dispatch("GET_OR_UPDATE_PROFILE", res.data);
@@ -269,7 +285,9 @@ const actions = {
     async deleteEducation({ commit, dispatch }, { eduId }) {
         try {
             // delete the education by id
-            const res = await axios.delete(`/api/profile/education/${eduId}`);
+            const res = await axios.delete(
+                `http://localhost:5000/api/profile/education/${eduId}`
+            );
 
             // send the updated profile data to the reducer
             commit("GET_OR_UPDATE_PROFILE", res.data);
@@ -294,7 +312,7 @@ const actions = {
             )
         ) {
             try {
-                await axios.delete("/api/profile");
+                await axios.delete("http://localhost:5000/api/profile");
 
                 commit("CLEAR_PROFILE");
                 commit("LOGOUT_OR_AUTH_FAIL", null, { root: true }); // from auth module, hence {root: true}
