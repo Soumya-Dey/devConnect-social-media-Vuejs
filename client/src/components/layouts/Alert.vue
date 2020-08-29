@@ -1,5 +1,5 @@
 <template>
-  <section class="container" v-if="this.allAlerts !==null && this.allAlerts.length > 0">
+  <section v-if="this.allAlerts !==null && this.allAlerts.length > 0">
     <div
       v-for="alert in this.allAlerts"
       :key="alert.id"

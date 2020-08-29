@@ -256,12 +256,16 @@ img {
 }
 
 .alert {
-  padding: 0.8rem 1.2rem;
-  margin: 1rem 0;
+  position: absolute;
+  right: 4em;
+  max-width: 40%;
+  padding: 0.6rem 1rem;
+  font-size: 0.95em;
   opacity: 0.9;
   background: var(--light-color);
   color: #333;
   border-radius: 4px;
+  word-wrap: normal;
   transition: all 0.2s ease;
 }
 

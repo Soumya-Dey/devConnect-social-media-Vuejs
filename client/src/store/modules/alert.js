@@ -9,7 +9,7 @@ const getters = {
 };
 
 const actions = {
-    setAlert({ commit }, { msg, alertType, timeout = 5000 }) {
+    setAlert({ commit }, { msg, alertType, timeout = 3000 }) {
         const id = uuidv4();
         const payload = {
             id,
@@ -20,7 +20,7 @@ const actions = {
         commit("SET_ALERT", payload);
 
         setTimeout(() => {
-            commit("REMOVE_ALERT", id);
+            commit("REMOVE_ALERT", { id });
         }, timeout);
     },
 };
@@ -28,7 +28,7 @@ const actions = {
 const mutations = {
     SET_ALERT: (state, payload) => (state.alert = [...state.alert, payload]),
     REMOVE_ALERT: (state, payload) =>
-        state.alert.filter((al) => al.id !== payload),
+        (state.alert = state.alert.filter((al) => al.id !== payload.id)),
 };
 
 export default {

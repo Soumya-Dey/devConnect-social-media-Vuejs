@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import setAuthToken from "../../utils/setAuthToken";
+import router from "../../router/index";
 
 const state = {
     auth: {
@@ -28,6 +29,8 @@ const actions = {
             const res = await axios.get("http://localhost:5000/api/auth");
 
             commit("USER_LOADED", res.data);
+
+            router.push("/dashboard");
         } catch (error) {
             commit("LOGOUT_OR_AUTH_FAIL");
         }
