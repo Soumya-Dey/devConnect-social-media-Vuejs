@@ -6,9 +6,9 @@ Vue.use(VueRouter);
 
 const routes = [
     {
-        path: "/",
-        name: "Landing",
-        component: Landing,
+        path: "/create-profile",
+        name: "CreateOrUpdateProfile",
+        component: () => import("../views/CreateOrUpdateProfile.vue"),
     },
     {
         path: "/login",
@@ -38,6 +38,11 @@ const routes = [
         path: "/dashboard",
         name: "Dashboard",
         component: () => import("../views/Dashboard.vue"),
+    },
+    {
+        path: "/",
+        name: "Landing",
+        component: Landing,
     },
 ];
 
