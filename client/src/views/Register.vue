@@ -17,20 +17,18 @@
           required
         />
         <small class="form-text">
-          * For profile image, use a{" "}
+          * For profile image, use a
           <a
             href="https://en.gravatar.com/site/login"
             target="_blank"
             rel="noopener noreferrer"
           >Gravatar</a>
-          {" "}
-          email or create a{" "}
+          email or create a
           <a
             href="https://en.gravatar.com/site/login"
             target="_blank"
             rel="noopener noreferrer"
           >Gravatar</a>
-          {" "}
           account if you don't have one, then sign up here with
           that email.
           <br />You can also edit profile image after registration

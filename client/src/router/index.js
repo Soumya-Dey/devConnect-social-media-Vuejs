@@ -34,6 +34,11 @@ const routes = [
         name: "Reset",
         component: () => import("../views/Reset.vue"),
     },
+    {
+        path: "/dashboard",
+        name: "Dashboard",
+        component: () => import("../views/Dashboard.vue"),
+    },
 ];
 
 const router = new VueRouter({
