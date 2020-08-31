@@ -256,7 +256,7 @@ img {
 }
 
 .alert {
-  position: absolute;
+  position: fixed;
   right: 4em;
   max-width: 40%;
   padding: 0.6rem 1rem;

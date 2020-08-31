@@ -267,7 +267,7 @@ const actions = {
             );
 
             // send the updated profile data to the reducer
-            dispatch("GET_OR_UPDATE_PROFILE", res.data);
+            commit("GET_OR_UPDATE_PROFILE", res.data);
 
             // show an alert
             dispatch("setAlert", {

@@ -155,9 +155,10 @@ export default {
       });
     },
   },
-  computed: mapGetters(["currentProfile", "profileLoadingStatus"]),
+  computed: mapGetters(["currentProfile", "profileLoadingStatus", "authenticationStatus"]),
   created: function () {
-    if (!this.currentProfile) this.getCurrentProfile();
+    if(this.authenticationStatus){
+      if (!this.currentProfile) this.getCurrentProfile();
 
     if (!this.profileLoadingStatus && this.currentProfile) {
       // loading data from profile state to component state
@@ -174,6 +175,9 @@ export default {
       // joining the array elements to "," separated string
       if (Array.isArray(this.formData.skills))
         this.formData.skills = this.formData.skills.join(", ");
+    }
+    } else{
+      this.$router.push('/login')
     }
   },
 };
