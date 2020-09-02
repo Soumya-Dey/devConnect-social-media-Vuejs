@@ -30,7 +30,7 @@ const actions = {
 
             commit("USER_LOADED", res.data);
 
-            router.push("/dashboard");
+            // router.push("/dashboard");
         } catch (error) {
             commit("LOGOUT_OR_AUTH_FAIL");
         }
@@ -50,6 +50,8 @@ const actions = {
 
             // load user after registration
             dispatch("loadUser");
+
+            router.push("/dashboard");
         } catch (error) {
             const errArr = error.response.data.errors;
 
@@ -81,6 +83,8 @@ const actions = {
 
             // load the user after login
             dispatch("loadUser");
+
+            router.push("/dashboard");
         } catch (error) {
             const errArr = error.response.data.errors;
 

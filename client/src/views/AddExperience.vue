@@ -88,7 +88,9 @@ export default {
   },
   computed: mapGetters(["authenticationStatus"]),
   created: function () {
-    if (!this.authenticationStatus) this.$router.push("/login");
+    setTimeout(() => {
+      if (!this.authenticationStatus) this.$router.push("/login");
+    }, 500);
   },
 };
 </script>

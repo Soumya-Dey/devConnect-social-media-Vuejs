@@ -6,6 +6,11 @@ Vue.use(VueRouter);
 
 const routes = [
     {
+        path: "/profiles",
+        name: "Profiles",
+        component: () => import("../views/Profiles.vue"),
+    },
+    {
         path: "/create-profile",
         name: "CreateOrUpdateProfile",
         component: () => import("../views/CreateOrUpdateProfile.vue"),
